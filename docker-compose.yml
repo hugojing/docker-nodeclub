@@ -17,9 +17,9 @@ services:
     networks:
      - default
     environment:
-     - MONGO_PORT_27017_TCP_ADDR=marmotserver_mongo_1
+     - MONGO_PORT_27017_TCP_ADDR=dockernodeclub_mongo_1
      - MONGO_PORT_27017_TCP_PORT=27017
-     - REDIS_PORT_6379_TCP_ADDR=marmotserver_redis_1
+     - REDIS_PORT_6379_TCP_ADDR=dockernodeclub_redis_1
      - REDIS_PORT_6379_TCP_PORT=6379
 
   mongo:
