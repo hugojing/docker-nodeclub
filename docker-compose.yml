@@ -1,0 +1,37 @@
+version: '2'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  app:
+    build: .
+    volumes:
+     - /data/marmot/logs:/usr/src/app/logs
+    ports:
+     - 127.0.0.1:3000:3000
+    depends_on:
+     - mongo
+     - redis
+    networks:
+     - default
+    environment:
+     - MONGO_PORT_27017_TCP_ADDR=marmot_mongo_1
+     - MONGO_PORT_27017_TCP_PORT=27017
+     - REDIS_PORT_6379_TCP_ADDR=marmot_redis_1
+     - REDIS_PORT_6379_TCP_PORT=6379
+
+  mongo:
+    image: mongo:3.0.5
+    volumes:
+     - /data/marmot/db:/data/db
+    networks:
+     - default
+
+  redis:
+    image: redis:3.0.3
+    volumes:
+     - /data/marmot/redis:/data
+    networks:
+     - default
